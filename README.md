@@ -1,2 +1,0 @@
-# learnlaravel
-Learning Laravel Development
