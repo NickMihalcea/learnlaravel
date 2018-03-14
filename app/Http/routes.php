@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/about', function () {
 //     return "This is the about page";
@@ -38,8 +38,78 @@ Route::get('/', function () {
 
 // Route::resource('posts', 'PostsController');
 
-Route::get('/contact', 'PostsController@contact');
+// Route::get('/contact', 'PostsController@contact');
 
 
 
-Route::get('/post/{id}/{name}/{password}', 'PostsController@show_post');
+// Route::get('/post/{id}/{name}/{password}', 'PostsController@show_post');
+
+/*
+|-------------------------------------------------------------------------------
+| Application Routes
+|-------------------------------------------------------------------------------
+*/
+
+
+
+/*
+|-------------------------------------------------------------------------------
+| DATABASE Raw SQL Queries
+|-------------------------------------------------------------------------------
+*/
+
+    /*
+    |-----------------------------------------------------------------------
+    | Inserting data in database
+    |-----------------------------------------------------------------------
+    */
+    // Route::get('/insert', function(){
+    
+    //     DB::insert('insert into posts(title,content) values(?, ?)', ['PHP with Laravel', 'Laravel is the best thing that has happend to PHP']);
+    
+    // });
+    
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Reading data from database
+    |-----------------------------------------------------------------------
+    */
+    // Route::get('/read', function() {
+    
+        
+    //     //Reading inserted data from database
+    //     $results = DB::select('select * from posts where id = ?', [1]);
+        
+    //     return var_dump($results);
+        
+    //     // foreach($results as $post) {
+    //     //     return $post->title;
+    //     // }
+    // });
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Updating entry in database
+    |-----------------------------------------------------------------------
+    */
+    // Route::get('/update', function() {
+        
+    //     $updated = DB::update('update posts set title = "Updated title" where id = ?', [1]);
+        
+    //     return $updated;
+        
+    // });
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Deleting data from database
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('/delete', function() {
+        
+       $deleted = DB::delete('delete from posts where id = ?', [1]);
+        
+        return $deleted;
+    });
