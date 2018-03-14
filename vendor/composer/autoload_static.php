@@ -261,9 +261,9 @@ class ComposerStaticInitd6b00abcc686a8d7dd5ce2c4e1191460
     );
 
     public static $classMap = array (
-        'AddIsAdminColumnToPostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_14_133735_add_is_admin_column_to_posts_table.php',
+        'AddIsAdminColumnToPostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_14_140319_add_is_admin_column_to_posts_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-        'CreateProstsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_14_125421_create_prosts_table.php',
+        'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_14_140217_create_posts_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
