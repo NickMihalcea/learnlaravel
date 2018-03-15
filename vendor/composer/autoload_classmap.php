@@ -6,10 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCountryIdColumnToUsers' => $baseDir . '/database/migrations/2018_03_15_144046_add_country_id_column_to_users.php',
     'AddDeletedAtColumnToPostsTable' => $baseDir . '/database/migrations/2018_03_14_163258_add_deleted_at_column_to_posts_table.php',
     'AddIsAdminColumnToPostsTable' => $baseDir . '/database/migrations/2018_03_14_140319_add_is_admin_column_to_posts_table.php',
+    'CreateCountriesTable' => $baseDir . '/database/migrations/2018_03_15_143924_create_countries_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePhotosTable' => $baseDir . '/database/migrations/2018_03_15_150926_create_photos_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2018_03_14_140217_create_posts_table.php',
+    'CreateRolesTable' => $baseDir . '/database/migrations/2018_03_15_135155_create_roles_table.php',
+    'CreateUsersRolesTable' => $baseDir . '/database/migrations/2018_03_15_135426_create_users_roles_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

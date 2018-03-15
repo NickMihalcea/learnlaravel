@@ -1,5 +1,7 @@
 <?php
 use App\Post;
+use App\User;
+use App\Country;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -63,11 +65,11 @@ Route::get('/', function () {
     | Inserting data in database
     |-----------------------------------------------------------------------
     */
-    Route::get('/insert', function(){
+    // Route::get('/insert', function(){
     
-        DB::insert('insert into posts(title,content) values(?, ?)', ['Laravel is awesome', 'Laravel is the best thing that has happend to PHP, PERIOD']);
+    //     DB::insert('insert into posts(title,content) values(?, ?)', ['Laravel is awesome', 'Laravel is the best thing that has happend to PHP, PERIOD']);
     
-    });
+    // });
     
     
     /*
@@ -322,8 +324,142 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('/forcedelete', function() {
+    // Route::get('/forcedelete', function() {
         
-        Post::onlyTrashed()->where('is_admin', 0)->forceDelete();
+    //     Post::onlyTrashed()->where('is_admin', 0)->forceDelete();
+        
+    // });
+    
+
+/*
+|-------------------------------------------------------------------------------
+| Laravel Fundamentals - Database - Eloquent Relationships
+|-------------------------------------------------------------------------------
+*/
+    /*
+    |-----------------------------------------------------------------------
+    | One to One Relationship
+    |-----------------------------------------------------------------------
+    */
+    
+    // Route::get('/user/{id}/post', function($id) {
+        
+    // return User::find($id)->post->content;
+    
+    // });
+    
+    /*
+    |-----------------------------------------------------------------------
+    | The inverse Relationship
+    |-----------------------------------------------------------------------
+    */
+    
+    // Route::get('/post/{id}/user', function($id) {
+        
+    //     return Post::find($id)->user->name;
+        
+    // });
+    
+    
+    /*
+    |-----------------------------------------------------------------------
+    | One to many Relationship
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('/posts', function() {
+        
+        $user = User::find(1);
+        
+        foreach ($user->posts as $post) {
+            
+            echo $post->title . "<br>";
+        }
         
     });
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Many to many Relationship
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('/user/{id}/role', function($id) {
+        
+        $user = User::find($id)->roles()->orderBy('id', 'desc')->get();
+        
+        return $user;
+        
+        
+        foreach($user->roles as $role) {
+            
+            return $role->name;
+        }
+    });
+    
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Many to many Relationship / Accessing the intermediate table / pivot
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('user/pivot', function() {
+        
+        $user = User::find(1);
+        
+        foreach($user->roles as $role) {
+            
+            return $role->pivot->created_at;
+            
+        }
+        
+    });
+    
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Has many through relation part 1 & 2
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('/user/country', function() {
+        
+        $country = Country::find(3);
+        
+        foreach($country->posts as $post) {
+            
+            return $post->title;
+        }
+    });
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Polymorphic relation part 1 & 2
+    |-----------------------------------------------------------------------
+    */
+    // get the photo for user
+    Route::get('user/photos', function() {
+        
+        $user = User::find(1);
+        
+        foreach($user->photos as $photo) {
+            
+            return $photo->path;
+            
+        }
+        
+    });  
+    
+    // get the photo for post
+    Route::get('post/{id}/photos', function($id) {
+        
+        $post = Post::find($id);
+        
+        foreach($post->photos as $photo) {
+            
+            echo $photo->path . "<br>";
+            
+        }
+        
+    });  

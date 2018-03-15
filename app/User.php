@@ -23,4 +23,61 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    
+/*
+|-------------------------------------------------------------------------------
+| Laravel Fundamentals - Database - Eloquent Relationships
+|-------------------------------------------------------------------------------
+*/
+    /*
+    |-----------------------------------------------------------------------
+    | One to One Relationship
+    |-----------------------------------------------------------------------
+    */
+    
+    public function post() {
+        
+        return $this->hasOne('App\Post');
+        
+    }
+    
+    /*
+    |-----------------------------------------------------------------------
+    | One to many Relationship
+    |-----------------------------------------------------------------------
+    */
+    
+    public function posts() {
+        
+        return $this->hasMany('App\Post');
+    }
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Many to many Relationship / Querying Intermediate Table
+    |-----------------------------------------------------------------------
+    */
+    
+    public function roles() {
+        
+        return $this->belongsToMany('App\Role')->withPivot('created_at');
+        
+        // To customise table name and columns follow the format below
+        // return $this->belongsToMany('App\Role', 'user_roles', 'user_id', 'role_id');
+    }
+    
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Polymorphic Relation part 1 & 2
+    |-----------------------------------------------------------------------
+    */
+    
+    public function photos() {
+        
+        return $this->morphMany('App\Photo', 'imageable');
+        
+    }
+    
 }

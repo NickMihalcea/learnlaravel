@@ -261,10 +261,15 @@ class ComposerStaticInitd6b00abcc686a8d7dd5ce2c4e1191460
     );
 
     public static $classMap = array (
+        'AddCountryIdColumnToUsers' => __DIR__ . '/../..' . '/database/migrations/2018_03_15_144046_add_country_id_column_to_users.php',
         'AddDeletedAtColumnToPostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_14_163258_add_deleted_at_column_to_posts_table.php',
         'AddIsAdminColumnToPostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_14_140319_add_is_admin_column_to_posts_table.php',
+        'CreateCountriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_15_143924_create_countries_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePhotosTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_15_150926_create_photos_table.php',
         'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_14_140217_create_posts_table.php',
+        'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_15_135155_create_roles_table.php',
+        'CreateUsersRolesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_15_135426_create_users_roles_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
