@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddDeletedAtColumnToPostsTable' => $baseDir . '/database/migrations/2018_03_14_163258_add_deleted_at_column_to_posts_table.php',
     'AddIsAdminColumnToPostsTable' => $baseDir . '/database/migrations/2018_03_14_140319_add_is_admin_column_to_posts_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2018_03_14_140217_create_posts_table.php',
