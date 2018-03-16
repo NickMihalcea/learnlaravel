@@ -2,6 +2,8 @@
 use App\Post;
 use App\User;
 use App\Country;
+use App\Photo;
+use App\Tag;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -462,4 +464,55 @@ Route::get('/', function () {
             
         }
         
-    });  
+    });
+    
+
+    /*
+    |-----------------------------------------------------------------------
+    | Polymorphic inverse relation - Section 11 / Lecture 73
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('photo/{id}/post', function($id) {
+        
+      $photo = Photo::findOrFail($id);
+      
+      return $photo->imageable;
+    });
+    
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Polymorphic relation many to many / retrieving
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('/post/tag', function() {
+        
+        $post = Post::find(1);
+        
+        foreach($post->tags as $tag) {
+            
+            echo $tag->name;
+            
+        }
+        
+    });
+    
+    /*
+    |-----------------------------------------------------------------------
+    | Polymorphic relation many to many / retrieving owner
+    |-----------------------------------------------------------------------
+    */
+    
+    Route::get('/tag/post', function() {
+        
+        $tag = Tag::find(2);
+        
+        //return $tag->posts;
+        foreach($tag->posts as $post)
+        {
+            return $post->title;
+        }
+        
+    });

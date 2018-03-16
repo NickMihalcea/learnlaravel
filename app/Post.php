@@ -61,4 +61,17 @@ class Post extends Model
         
     }
     
+
+    /*
+    |-----------------------------------------------------------------------
+    | Polymorphic relation many to many part 1 & 2
+    |-----------------------------------------------------------------------
+    */
+    
+    public function tags() {
+        
+        return $this->morphToMany('App\Tag', 'taggable');
+        
+    }
+    
 }
