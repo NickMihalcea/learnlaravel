@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -13,10 +14,21 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+/*
+|-------------------------------------------------------------------------------
+| Laravel Fundamentals - Crud Application / Forms & Validation
+|-------------------------------------------------------------------------------
+*/
+    public function index()
     {
-        //
-        return "its working the number is: " . $id;
+        /*
+        |-----------------------------------------------------------------------
+        | Laravel Fundamentals - Crud Application / Forms & Validation
+        | Controller showing all posts in index blade.
+        |-----------------------------------------------------------------------
+        */
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
         
         
         
@@ -29,9 +41,13 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
-        
-        return "I am the method that creates stuff.";
+        /*
+        |-----------------------------------------------------------------------
+        | Laravel Fundamentals - Crud Application / Forms & Validation
+        | Controller returning create posts form.
+        |-----------------------------------------------------------------------
+        */
+        return view('posts.create');
     }
 
     /**
@@ -42,7 +58,25 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        |-----------------------------------------------------------------------
+        | Laravel Fundamentals - Crud Application / Forms & Validation
+        | Controller handling the create request and redirecting to index.
+        |-----------------------------------------------------------------------
+        */
+        
+        // return $request->all();
+        // $input = $request->all();
+        // $input['title'] = $request->title;
+        
+        // $post = new Post;
+        // $post->title = $request->title;
+        // $post->save();
+        
+        Post::create($request->all());
+        
+        return redirect('/posts');
+
     }
 
     /**
@@ -53,10 +87,15 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        /*
+        |-----------------------------------------------------------------------
+        | Laravel Fundamentals - Crud Application / Forms & Validation
+        | Controller handling the individual post page based on $id
+        |-----------------------------------------------------------------------
+        */
+        $post = Post::findOrFail($id);
         
-        
-        return "this is the show method " . $id;
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -67,7 +106,15 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        /*
+        |-----------------------------------------------------------------------
+        | Laravel Fundamentals - Crud Application / Forms & Validation
+        | Controller returning edit/delete posts form.
+        |-----------------------------------------------------------------------
+        */
+        $post = Post::findOrFail($id);
+        
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -79,7 +126,18 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*
+        |-----------------------------------------------------------------------
+        | Laravel Fundamentals - Crud Application / Forms & Validation
+        | Controller handling update method sent through edit form and
+        | redirecting to posts index page.
+        |-----------------------------------------------------------------------
+        */
+        $post = Post::findOrFail($id);
+        
+        $post->update($request->all());
+        
+        return redirect('/posts');
     }
 
     /**
@@ -90,27 +148,29 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /*
+        |-----------------------------------------------------------------------
+        | Laravel Fundamentals - Crud Application / Forms & Validation
+        | Controller handling delete method sent through the edit form of posts.
+        |-----------------------------------------------------------------------
+        */
+        $post = Post::whereId($id)->delete();
+        return redirect('/posts');
     }
     
+    //showing a contact list
     public function contact() {
-        
-        // $people = ['Nick', 'Mihalcea', 'Ioana', 'Padurariu'];
+        // $people = ['Nick', 'Kriogen', 'Laravel', 'PHP'];
         $people = ['test'];
-        
         return view('contact', compact('people'));
         
         
     }
     
-    
+    // some other function to show info based on $id, $name & $password
     public function show_post($id, $name, $password) {
         
         // return view('post')->with('id',$id);
         return view('post', compact('id','name','password'));
     }
-    
-    
-    
-    
 }

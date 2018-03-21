@@ -369,16 +369,16 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('/posts', function() {
+    // Route::get('/posts', function() {
         
-        $user = User::find(1);
+    //     $user = User::find(1);
         
-        foreach ($user->posts as $post) {
+    //     foreach ($user->posts as $post) {
             
-            echo $post->title . "<br>";
-        }
+    //         echo $post->title . "<br>";
+    //     }
         
-    });
+    // });
     
     /*
     |-----------------------------------------------------------------------
@@ -386,18 +386,18 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('/user/{id}/role', function($id) {
+    // Route::get('/user/{id}/role', function($id) {
         
-        $user = User::find($id)->roles()->orderBy('id', 'desc')->get();
+    //     $user = User::find($id)->roles()->orderBy('id', 'desc')->get();
         
-        return $user;
+    //     return $user;
         
         
-        foreach($user->roles as $role) {
+    //     foreach($user->roles as $role) {
             
-            return $role->name;
-        }
-    });
+    //         return $role->name;
+    //     }
+    // });
     
     
     /*
@@ -406,17 +406,17 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('user/pivot', function() {
+    // Route::get('user/pivot', function() {
         
-        $user = User::find(1);
+    //     $user = User::find(1);
         
-        foreach($user->roles as $role) {
+    //     foreach($user->roles as $role) {
             
-            return $role->pivot->created_at;
+    //         return $role->pivot->created_at;
             
-        }
+    //     }
         
-    });
+    // });
     
     
     /*
@@ -425,15 +425,15 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('/user/country', function() {
+    // Route::get('/user/country', function() {
         
-        $country = Country::find(3);
+    //     $country = Country::find(3);
         
-        foreach($country->posts as $post) {
+    //     foreach($country->posts as $post) {
             
-            return $post->title;
-        }
-    });
+    //         return $post->title;
+    //     }
+    // });
     
     /*
     |-----------------------------------------------------------------------
@@ -441,30 +441,30 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     // get the photo for user
-    Route::get('user/photos', function() {
+    // Route::get('user/photos', function() {
         
-        $user = User::find(1);
+    //     $user = User::find(1);
         
-        foreach($user->photos as $photo) {
+    //     foreach($user->photos as $photo) {
             
-            return $photo->path;
+    //         return $photo->path;
             
-        }
+    //     }
         
-    });  
+    // });  
     
     // get the photo for post
-    Route::get('post/{id}/photos', function($id) {
+    // Route::get('post/{id}/photos', function($id) {
         
-        $post = Post::find($id);
+    //     $post = Post::find($id);
         
-        foreach($post->photos as $photo) {
+    //     foreach($post->photos as $photo) {
             
-            echo $photo->path . "<br>";
+    //         echo $photo->path . "<br>";
             
-        }
+    //     }
         
-    });
+    // });
     
 
     /*
@@ -473,12 +473,12 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('photo/{id}/post', function($id) {
+    // Route::get('photo/{id}/post', function($id) {
         
-      $photo = Photo::findOrFail($id);
+    //   $photo = Photo::findOrFail($id);
       
-      return $photo->imageable;
-    });
+    //   return $photo->imageable;
+    // });
     
     
     /*
@@ -487,17 +487,17 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('/post/tag', function() {
+    // Route::get('/post/tag', function() {
         
-        $post = Post::find(1);
+    //     $post = Post::find(1);
         
-        foreach($post->tags as $tag) {
+    //     foreach($post->tags as $tag) {
             
-            echo $tag->name;
+    //         echo $tag->name;
             
-        }
+    //     }
         
-    });
+    // });
     
     /*
     |-----------------------------------------------------------------------
@@ -505,14 +505,22 @@ Route::get('/', function () {
     |-----------------------------------------------------------------------
     */
     
-    Route::get('/tag/post', function() {
+    // Route::get('/tag/post', function() {
         
-        $tag = Tag::find(2);
+    //     $tag = Tag::find(2);
         
-        //return $tag->posts;
-        foreach($tag->posts as $post)
-        {
-            return $post->title;
-        }
+    //     //return $tag->posts;
+    //     foreach($tag->posts as $post)
+    //     {
+    //         return $post->title;
+    //     }
         
-    });
+    // });
+    
+/*
+|-------------------------------------------------------------------------------
+| Laravel Fundamentals - Crud Application / Forms & Validation
+|-------------------------------------------------------------------------------
+*/
+
+    Route::resource('/posts', 'PostsController');
